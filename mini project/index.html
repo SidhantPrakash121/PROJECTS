@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <span style="font-size: 2rem;"> Health Dashboard
+            </div>
+            <nav>
+                <ul>
+                    <li><a onclick="navigate('home')" class="active">Home</a></li>
+                    <li><a href="#about" onclick="navigate('about')">About</a></li>
+                    <li><a onclick="navigate('service')">Service</a></li> <!-- Leads to Patient Dashboard -->
+                    <li><a href="#contact" onclick="navigate('contact')">Contact</a></li>
+                    <li><a onclick="navigate('login')">Login</a></li> <!-- Leads to Monitor -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- 1. HOME SECTION -->
+        <div id="home" class="section-view active-view">
+            <div class="hero">
+                <h1>Integrated Health Dashboard</h1>
+                <p>Consolidating Vital Signs & Digital Prescriptions</p>
+                <div style="margin-top: 20px;">
+                    <button onclick="navigate('service')" style="padding: 10px 20px; border:none; background:white; color:var(--primary-blue); cursor:pointer; font-weight:bold; border-radius:5px;">View Patient Records</button>
+                    <button onclick="navigate('login')" style="padding: 10px 20px; border:1px solid white; background:transparent; color:white; cursor:pointer; font-weight:bold; border-radius:5px; margin-left:10px;">Live Monitor</button>
+                </div>
+            </div>
+            <div class="grid-layout">
+                <div class="card">
+                    <h3>Project Goal</h3>
+                    <p>To eliminate "Data Silos" and "Illegible Prescriptions" by unifying health data into one modern interface.</p>
+                </div>
+                <div class="card">
+                    <h3>Team</h3>
+                    <p><strong>Developed by:</strong> Swapnil Verma & Sidhant Prakash</p>
+                    <p><strong>Guide:</strong> Dr. Neha Gupta</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. ABOUT SECTION -->
+        <div id="about" class="section-view">
+            <div class="card">
+                <h1>About the Project</h1>
+                <p>Modern clinical settings often suffer from scattered data. This project solves that by creating a centralized dashboard.</p>
+                <br>
+                <h3>Core Problems Solved:</h3>
+                <ul>
+                    <li>✅ <strong>Illegible Handwriting:</strong> Replaced by Digital Prescriptions.</li>
+                    <li>✅ <strong>Alert Blindness:</strong> Addressed via high-priority Critical Pop-ups.</li>
+                    <li>✅ <strong>Data Silos:</strong> Unified view of BP, Heart Rate, and SpO2.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3. SERVICE SECTION (Patient Dashboard) -->
+        <div id="service" class="section-view">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; border-left: 5px solid var(--primary-blue); padding-left: 15px;">
+                <h2>Patient Dashboard</h2>
+                <span id="service-role-indicator" style="font-size: 0.9rem; color: #666; font-style: italic;">Viewing as Guest</span>
+            </div>
+            
+            <div class="grid-layout">
+                <!-- Patient BMI -->
+                <div class="card">
+                    <h3>Patient BMI</h3>
+                    <div class="stat-box">
+                        <div class="bmi-score">22.4</div>
+                        <p>Status: <strong>Normal</strong></p>
+                        <small>Height: 175cm | Weight: 68.5kg</small>
+                    </div>
+                </div>
+
+                <!-- Active Prescriptions (New Feature) -->
+                <div class="card" style="grid-row: span 2;">
+                    <h3>
+                        Active Prescriptions
+                        <!-- Badge only shows if logic permits, mostly decorative here -->
+                    </h3>
+                    
+                    <ul class="data-list" id="med-list">
+                        <li><span>Paracetamol 500mg</span> <small>BD (Twice)</small></li>
+                        <li><span>Vitamin C</span> <small>OD (Once)</small></li>
+                    </ul>
+
+                    <!-- Doctor Only Add Medicine Form -->
+                    <div id="add-med-form">
+                        <h4 style="margin-bottom:10px; color:var(--primary-blue);">Add New Medicine <span class="doc-only-badge">Doctor Only</span></h4>
+                        <div style="display:flex; gap:5px;">
+                            <input type="text" id="new-med-name" placeholder="Medicine Name & Dosage">
+                            <button onclick="addMedicine()">Add</button>
+                        </div>
+                    </div>
+                    <p id="guest-med-msg" style="margin-top:15px; font-size:0.8rem; color:#888; text-align:center;">
+                        * Login as Doctor to add new medicines.
+                    </p>
+                </div>
+
+                <!-- Patient History -->
+                <div class="card">
+                    <h3>Patient History</h3>
+                    <ul class="data-list">
+                        <li><span>Chronic Issues:</span> <span>None</span></li>
+                        <li><span>Allergies:</span> <span>Penicillin</span></li>
+                        <li><span>Last Visit:</span> <span>15 Nov 2025</span></li>
+                    </ul>
+                </div>
+
+                <!-- Diagnosis Report -->
+                <div class="card">
+                    <h3>Diagnosis Report</h3>
+                    <p><strong>Patient:</strong> Swapnil Verma</p>
+                    <p><strong>Diagnosis:</strong> Mild viral fever with dehydration.</p>
+                    <p><strong>Observation:</strong> Vitals are stabilizing. Recommended rest for 48 hours.</p>
+                </div>
+
+                <!-- Patient Diet -->
+                <div class="card">
+                    <h3>Patient Diet</h3>
+                    <ul class="data-list">
+                        <li><span>Morning:</span> <span>Oats & Fruits</span></li>
+                        <li><span>Lunch:</span> <span>Grilled Chicken/Paneer</span></li>
+                        <li><span>Dinner:</span> <span>Lentil Soup</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. CONTACT SECTION -->
+        <div id="contact" class="section-view">
+            <div class="card" style="text-align: center;">
+                <h1>Contact Support</h1>
+                <p>For technical issues with the dashboard:</p>
+                <p>Email: support@synexfit.com</p>
+                <p>Phone: +91 98765 43210</p>
+            </div>
+        </div>
+
+        <!-- 5. LOGIN SECTION (Gateway to Live Monitor) -->
+        <div id="login" class="section-view">
+            
+            <!-- Step 1: Role Selection -->
+            <div id="login-selection">
+                <div class="card" id="login-gate">
+                    <h2>Select User Role</h2>
+                    <p>Authentication required for Live Monitoring</p>
+                    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+                    
+                    <button class="role-btn btn-doc" onclick="login('doctor')">
+                        Login as <strong>DOCTOR</strong><br>
+                        <small>(Write Prescriptions + Full Access)</small>
+                    </button>
+                    
+                    <button class="role-btn btn-fam" onclick="login('family')">
+                        Login as <strong>FAMILY MEMBER</strong><br>
+                        <small>(Read Only Mode)</small>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Live Monitor (Hidden initially) -->
+            <div id="live-monitor" style="display: none;">
+                <div class="monitor-header">
+                    <div>
+                        <h2>Live Patient Monitor</h2>
+                        <span id="user-role-display" style="font-size: 0.9rem; opacity: 0.8;"></span>
+                    </div>
+                    <button onclick="logout()" style="padding: 8px 15px; background: rgba(255,255,255,0.2); border: none; color: white; cursor: pointer; border-radius: 4px;">Logout</button>
+                </div>
+
+                <div class="grid-layout">
+                    <!-- Vitals Section -->
+                    <div class="card">
+                        <h3>Real-Time Vitals</h3>
+                        
+                        <div class="vital-row">
+                            <span class="vital-label">❤️ Heart Rate</span>
+                            <span class="vital-reading" id="bpm-val">--</span>
+                        </div>
+                        
+                        <div class="vital-row">
+                            <span class="vital-label">🩸 Blood Pressure</span>
+                            <span class="vital-reading" id="bp-val">--/--</span>
+                        </div>
+                        
+                        <div class="vital-row">
+                            <span class="vital-label">🌬️ Respiration</span>
+                            <span class="vital-reading">18/min</span>
+                        </div>
+
+                        <div class="vital-row">
+                            <span class="vital-label">💧 SpO2</span>
+                            <span class="vital-reading">98%</span>
+                        </div>
+
+                         <div class="vital-row">
+                            <span class="vital-label">🌡️ Temperature</span>
+                            <span class="vital-reading">98.6°F</span>
+                        </div>
+                    </div>
+
+                    <!-- Digital Prescription Module (Doctor Only - Monitor View) -->
+                    <div class="card" id="doctor-panel" style="display: none;">
+                        <h3>Digital Prescription (e-Rx)</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Create a legible digital prescription to avoid errors.</p>
+                        
+                        <div class="rx-pad">
+                            <div style="border-bottom: 2px solid #000; margin-bottom: 10px; padding-bottom: 5px;">
+                                <strong>Rx</strong> | Dr. Neha Gupta
+                            </div>
+                            <label>Patient: Swapnil Verma</label>
+                            <textarea placeholder="Type medication details here..."></textarea>
+                            <button class="btn-send" onclick="alert('e-Prescription Sent to Pharmacy & Patient App!')">Sign & Send</button>
+                        </div>
+                    </div>
+
+                    <!-- Family Message (Family Only) -->
+                    <div class="card" id="family-panel" style="display: none;">
+                        <h3>Family Notice</h3>
+                        <p>You are in <strong>Read-Only Mode</strong>.</p>
+                        <p>The vitals shown are live. If an alert occurs, please notify the nurse immediately.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CRITICAL ALERT MODAL -->
+    <div id="alert-modal">
+        <div class="alert-box">
+            <div class="alert-title">⚠️ CRITICAL ALERT</div>
+            <p style="font-size: 1.2rem;">Patient Heart Rate Exceeded Safe Limits!</p>
+            <h1 style="font-size: 4rem; margin: 10px 0;">148 BPM</h1>
+            <p>Immediate Attention Required</p>
+            <button class="alert-btn" onclick="closeAlert()">ACKNOWLEDGE ALERT</button>
+        </div>
+    </div>
+    <script src="script.js" ></script>
+
+    </body>
+</html>
